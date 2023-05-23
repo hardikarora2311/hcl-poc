@@ -1,5 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
-import { ShepherdTour, ShepherdTourContext } from 'react-shepherd'
+import React, { useState, useRef, useCallback, } from "react";
 import ReactFlow, {
   ReactFlowProvider,
   addEdge,
@@ -7,8 +6,7 @@ import ReactFlow, {
   useEdgesState,
   Controls,
   Background,
-  ConnectionLineType 
-  
+  ConnectionLineType,
 } from "reactflow";
 import "reactflow/dist/style.css";
 
@@ -20,7 +18,6 @@ const nodeTypes = {
   custom1: InstanceNode1,
   custom2: InstanceNode2,
 };
-
 
 const initialNodes = [
   {
@@ -47,10 +44,10 @@ const DnDFlow = () => {
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
 
   const onConnect = useCallback(
-    (params)=> setEdges((eds) => addEdge({...params, type:"straight"}, eds ,edges)),
+    (params) =>
+      setEdges((eds) => addEdge({ ...params, type: "straight" }, eds, edges)),
     []
   );
-
 
   const onDragOver = useCallback((event) => {
     event.preventDefault();
@@ -86,35 +83,45 @@ const DnDFlow = () => {
   );
 
   const proOptions = { hideAttribution: true };
+  const defaultEdgeOptions = {
+    style: {
+      strokeWidth: 2,
+      stroke: "#000",
+    },
+    markerEnd: {
+      type: "arrowclosed",
+    },
+  };
+
   
 
   return (
-    <div className="dndflow">
-      <Sidebar />
-      <ReactFlowProvider>
-        <div className="reactflow-wrapper" ref={reactFlowWrapper}>
-          <ReactFlow
-            nodes={nodes}
-            edges={edges}
-            onNodesChange={onNodesChange}
-            onEdgesChange={onEdgesChange}
-            onConnect={onConnect}
-            onInit={setReactFlowInstance}
-            onDrop={onDrop}
-            onDragOver={onDragOver}
-            nodeTypes={nodeTypes}
-            proOptions={proOptions}
-            fitView
-            connectionLineType={ConnectionLineType.Straight}
-            minZoom={"1.2"}
-            maxZoom={"1"}
-          >
-            <Background variant="lines" />
-            <Controls />
-          </ReactFlow>
-        </div>
-      </ReactFlowProvider>
-    </div>
+      <div className="dndflow">
+        <Sidebar />
+        <ReactFlowProvider>
+          <div className="reactflow-wrapper" ref={reactFlowWrapper}>
+            <ReactFlow
+              nodes={nodes}
+              edges={edges}
+              onNodesChange={onNodesChange}
+              onEdgesChange={onEdgesChange}
+              onConnect={onConnect}
+              onInit={setReactFlowInstance}
+              onDrop={onDrop}
+              onDragOver={onDragOver}
+              nodeTypes={nodeTypes}
+              proOptions={proOptions}
+              fitView
+              defaultEdgeOptions={defaultEdgeOptions}
+              connectionLineType={ConnectionLineType.Straight}
+              minZoom={"1.2"}
+              maxZoom={"1"}
+            >
+              <Background variant="lines" />
+            </ReactFlow>
+          </div>
+        </ReactFlowProvider>
+      </div>
   );
 };
 
