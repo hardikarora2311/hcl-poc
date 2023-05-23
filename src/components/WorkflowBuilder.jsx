@@ -6,6 +6,7 @@ import ReactFlow, {
   useEdgesState,
   Controls,
   Background,
+  ConnectionLineType 
   
 } from "reactflow";
 import "reactflow/dist/style.css";
@@ -19,6 +20,7 @@ const nodeTypes = {
   custom1: InstanceNode1,
   custom2: InstanceNode2,
 };
+
 
 const initialNodes = [
   {
@@ -45,9 +47,10 @@ const DnDFlow = () => {
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
 
   const onConnect = useCallback(
-    (params) => setEdges((eds) => addEdge(params, eds)),
+    (params)=> setEdges((eds) => addEdge({...params, type:"straight"}, eds ,edges)),
     []
   );
+
 
   const onDragOver = useCallback((event) => {
     event.preventDefault();
@@ -83,7 +86,6 @@ const DnDFlow = () => {
   );
 
   const proOptions = { hideAttribution: true };
-
   
 
   return (
@@ -103,7 +105,9 @@ const DnDFlow = () => {
             nodeTypes={nodeTypes}
             proOptions={proOptions}
             fitView
-            // connectionLineType={ConnectionLineType.Straight}
+            connectionLineType={ConnectionLineType.Straight}
+            minZoom={"1.2"}
+            maxZoom={"1"}
           >
             <Background variant="lines" />
             <Controls />
