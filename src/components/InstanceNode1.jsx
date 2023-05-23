@@ -3,12 +3,12 @@ import { Handle, Position } from "reactflow";
 import Image from 'next/image'
 import icon2 from "../assets/icon2.png";
 
-const handleStyle = { left: 10 };
+// const handleStyle = { left: 10 };
 
 function InstanceNode1({ data }) {
-  const onChange = useCallback((evt) => {
-    console.log(evt.target.value);
-  }, []);
+  // const onChange = useCallback((evt) => {
+  //   console.log(evt.target.value);
+  // }, []);
 
   return (
     <>

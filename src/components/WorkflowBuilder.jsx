@@ -1,4 +1,5 @@
 import React, { useState, useRef, useCallback } from "react";
+import { ShepherdTour, ShepherdTourContext } from 'react-shepherd'
 import ReactFlow, {
   ReactFlowProvider,
   addEdge,
@@ -15,7 +16,6 @@ import Sidebar from "./Sidebar";
 import InstanceNode1 from "./InstanceNode1";
 import InstanceNode2 from "./InstanceNode2";
 
-// import './index.css';
 const nodeTypes = {
   custom1: InstanceNode1,
   custom2: InstanceNode2,
